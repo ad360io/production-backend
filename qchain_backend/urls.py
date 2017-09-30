@@ -15,7 +15,18 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+import qchain_backend.views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^login/$', qchain_backend.views.login3210, name='loginass1234'),
+    url(r'^dashboard-stats/$', qchain_backend.views.dashboard_stats, name='dashboard-stats'),
+    url(r'^dashboard-tables/$', qchain_backend.views.dashboard_tables, name='dashboard-tables'),
+    url(r'^dashboard-charts/', qchain_backend.views.dashboard_charts, name='dashboard-charts'),
+    url(r'^display-marketplace/$', qchain_backend.views.display_marketplace, name='display-marketplace'),
+    url(r'^create-adspace/$', qchain_backend.views.create_adspace, name='create-adspace'),
+    #url(r'^sites/(?P<web_id>[0-9]+)/$', qchain_backend.views.ad_list, name='ad_list'),
+    #url(r'^api-token-auth/', obtain_jwt_token),
+
 ]
+
