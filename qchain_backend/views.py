@@ -135,74 +135,74 @@ def display_marketplace(request):
 @api_view(["GET"])
 def dashboard_stats(request):
     context = {}
-    if(request.GET.get("userMode") and request.GET.get("currencyType") and request.GET.get("userName")):
-        userMode = request.GET.get("userMode").lower()
-        currencyType = request.GET.get("currencyType").lower()
-        userName = request.GET.get("userName")
-        print("username="+userName+" currencyType="+currencyType+"userMode="+userMode)
-        currentAgent = Agent.objects.filter(user__username=userName)
-        print(currentAgent)
-        currentUser = currentAgent[0].user
-        eqc_balance = currentAgent[0].e_balance
-        xqc_balance = currentAgent[0].x_balance
-        context["eqc_balance"]=eqc_balance
-        context["xqc_balance"]=xqc_balance
-        if( userMode == "publisher" ):
-            user_stats_list = Stat.objects.filter(contract__adspace__publisher=currentUser,contract__currency=currencyType)
-            today_stats = user_stats_list.filter(stat_date=datetime.date.today())
-            if today_stats:
-                nstats = len(today_stats)
-                context['topstat_revenue_today'] = round(sum([today_stats[ind].revenue for ind in range(nstats)])/nstats,8)
-                context['topstat_clicks_today'] = round(sum([today_stats[ind].clicks for ind in range(nstats)])/nstats,8)
-                context['topstat_impressions_today'] = round(sum([today_stats[ind].impressions for ind in range(nstats)])/nstats,8)
-                context['topstat_rpm_today'] = round(sum([today_stats[ind].rpm for ind in range(nstats)])/nstats,8)
-            else:
-                context['topstat_revenue_today'] = 0
-                context['topstat_clicks_today'] = 0
-                context['topstat_impressions_today'] = 0
-                context['topstat_rpm_today'] = 0
-
-            month_stats = user_stats_list.filter(stat_date__gte=datetime.date.today()-datetime.timedelta(30))
-            if month_stats:
-                nstats = len(month_stats)
-                context['topstat_revenue_30day'] = round(sum([month_stats[ind].revenue for ind in range(nstats)])/nstats,8)
-                context['topstat_clicks_30day'] =  round(sum([month_stats[ind].clicks for ind in range(nstats)])/nstats,0)
-                context['topstat_impressions_30day'] =  round(sum([month_stats[ind].impressions for ind in range(nstats)])/nstats,0)
-                context['topstat_rpm_30day'] =  round(sum([month_stats[ind].rpm for ind in range(nstats)])/nstats,8)
-            else:
-                context['topstat_revenue_30day'] = 0
-                context['topstat_clicks_30day'] = 0
-                context['topstat_impressions_30day'] = 0
-                context['topstat_rpm_30day'] = 0
-            print("------------------------------------------------------------------")
-            return response.Response(context)
-            #print(dashboard_stats)
-        elif( userMode.lower() == "advertiser" ):
-            print(userMode.lower())
-            user_stats_list = Stat.objects.filter(contract__ad__advertiser=currentUser,contract__currency=currencyType)
-            today_stats = user_stats_list.filter(stat_date=datetime.date.today())
-            if today_stats:
-                nstats = len(today_stats)
-                context['topstat_clicks_today'] = round(sum([today_stats[ind].clicks for ind in range(nstats)])/nstats,8)
-                context['topstat_impressions_today'] = round(sum([today_stats[ind].impressions for ind in range(nstats)])/nstats,8)
-            else:
-                context['topstat_clicks_today'] = 0
-                context['topstat_impressions_today'] = 0
-            month_stats = user_stats_list.filter(stat_date__gte=datetime.date.today()-datetime.timedelta(30))
-            if month_stats:
-                nstats = len(month_stats)
-                context['topstat_clicks_30day'] =  round(sum([month_stats[ind].clicks for ind in range(nstats)])/nstats,0)
-                context['topstat_impressions_30day'] =  round(sum([month_stats[ind].impressions for ind in range(nstats)])/nstats,0)
-            else:
-                context['topstat_clicks_30day'] = 0
-                context['topstat_impressions_30day'] = 0
-            return response.Response(context)
-
-        else:
-            print("Unknown mode specified")
-    else:
-        print("Incorrect parameters specified. What should I do now?")
-        return response.Response({"error":"Incorrect parameters specified"})
+    # if(request.GET.get("userMode") and request.GET.get("currencyType") and request.GET.get("userName")):
+    #     userMode = request.GET.get("userMode").lower()
+    #     currencyType = request.GET.get("currencyType").lower()
+    #     userName = request.GET.get("userName")
+    #     print("username="+userName+" currencyType="+currencyType+"userMode="+userMode)
+    #     currentAgent = Agent.objects.filter(user__username=userName)
+    #     print(currentAgent)
+    #     currentUser = currentAgent[0].user
+    #     eqc_balance = currentAgent[0].e_balance
+    #     xqc_balance = currentAgent[0].x_balance
+    #     context["eqc_balance"]=eqc_balance
+    #     context["xqc_balance"]=xqc_balance
+    #     if( userMode == "publisher" ):
+    #         user_stats_list = Stat.objects.filter(contract__adspace__publisher=currentUser,contract__currency=currencyType)
+    #         today_stats = user_stats_list.filter(stat_date=datetime.date.today())
+    #         if today_stats:
+    #             nstats = len(today_stats)
+    #             context['topstat_revenue_today'] = round(sum([today_stats[ind].revenue for ind in range(nstats)])/nstats,8)
+    #             context['topstat_clicks_today'] = round(sum([today_stats[ind].clicks for ind in range(nstats)])/nstats,8)
+    #             context['topstat_impressions_today'] = round(sum([today_stats[ind].impressions for ind in range(nstats)])/nstats,8)
+    #             context['topstat_rpm_today'] = round(sum([today_stats[ind].rpm for ind in range(nstats)])/nstats,8)
+    #         else:
+    #             context['topstat_revenue_today'] = 0
+    #             context['topstat_clicks_today'] = 0
+    #             context['topstat_impressions_today'] = 0
+    #             context['topstat_rpm_today'] = 0
+    #
+    #         month_stats = user_stats_list.filter(stat_date__gte=datetime.date.today()-datetime.timedelta(30))
+    #         if month_stats:
+    #             nstats = len(month_stats)
+    #             context['topstat_revenue_30day'] = round(sum([month_stats[ind].revenue for ind in range(nstats)])/nstats,8)
+    #             context['topstat_clicks_30day'] =  round(sum([month_stats[ind].clicks for ind in range(nstats)])/nstats,0)
+    #             context['topstat_impressions_30day'] =  round(sum([month_stats[ind].impressions for ind in range(nstats)])/nstats,0)
+    #             context['topstat_rpm_30day'] =  round(sum([month_stats[ind].rpm for ind in range(nstats)])/nstats,8)
+    #         else:
+    #             context['topstat_revenue_30day'] = 0
+    #             context['topstat_clicks_30day'] = 0
+    #             context['topstat_impressions_30day'] = 0
+    #             context['topstat_rpm_30day'] = 0
+    #         print("------------------------------------------------------------------")
+    #         return response.Response(context)
+    #         #print(dashboard_stats)
+    #     elif( userMode.lower() == "advertiser" ):
+    #         print(userMode.lower())
+    #         user_stats_list = Stat.objects.filter(contract__ad__advertiser=currentUser,contract__currency=currencyType)
+    #         today_stats = user_stats_list.filter(stat_date=datetime.date.today())
+    #         if today_stats:
+    #             nstats = len(today_stats)
+    #             context['topstat_clicks_today'] = round(sum([today_stats[ind].clicks for ind in range(nstats)])/nstats,8)
+    #             context['topstat_impressions_today'] = round(sum([today_stats[ind].impressions for ind in range(nstats)])/nstats,8)
+    #         else:
+    #             context['topstat_clicks_today'] = 0
+    #             context['topstat_impressions_today'] = 0
+    #         month_stats = user_stats_list.filter(stat_date__gte=datetime.date.today()-datetime.timedelta(30))
+    #         if month_stats:
+    #             nstats = len(month_stats)
+    #             context['topstat_clicks_30day'] =  round(sum([month_stats[ind].clicks for ind in range(nstats)])/nstats,0)
+    #             context['topstat_impressions_30day'] =  round(sum([month_stats[ind].impressions for ind in range(nstats)])/nstats,0)
+    #         else:
+    #             context['topstat_clicks_30day'] = 0
+    #             context['topstat_impressions_30day'] = 0
+    #         return response.Response(context)
+    #
+    #     else:
+    #         print("Unknown mode specified")
+    # else:
+    #     print("Incorrect parameters specified. What should I do now?")
+    #     return response.Response({"error":"Incorrect parameters specified"})
 
     return response.Response({"j":"jetti"})
 
