@@ -140,6 +140,7 @@ def dashboard_stats(request):
         currencyType = request.GET.get("currencyType").lower()
         userName = request.GET.get("userName")
         currentAgent = Agent.objects.filter(user__username=userName)
+        print(currentAgent)
         currentUser = currentAgent[0].user
         eqc_balance = currentAgent[0].e_balance
         xqc_balance = currentAgent[0].x_balance
@@ -395,6 +396,3 @@ def dashboard_charts(request):
         return response.Response({"error":"Incorrect parameters specified"})
 
     return response.Response({"j":"jetti"})
-
-
-
