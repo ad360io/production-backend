@@ -13,7 +13,7 @@ GENRE_CHOICES = (('Gaming', 'Gaming'), ('Movies', 'Movies'),
                  ('Auto', 'Auto'), ('Porn', 'Porn'))
 MAX_DIGITS = 12
 DECIMAL_PLACES = 8
-NAME_LENGTH = 30
+NAME_LENGTH = 80
 SHORT_TXT_LENGTH = 140
 CHOICE_LENGTH = 15
 URL_LENGTH = 200
@@ -186,5 +186,3 @@ class AdListing(models.Model):
     def clean(self):
         if self.ask_date_from >= self.ask_date_to:
             raise ValidationError(_('From date should preceed to date.'))
-
-

@@ -80,9 +80,13 @@ WSGI_APPLICATION = 'qchain_backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'dev.db'),
-    }
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'qchain_backend',
+        'USER': 'qchain_admin',
+        'PASSWORD': 'jda=3GR$NsA6m2K5',
+        'HOST': 'localhost',
+        'PORT': '',
+        }
 }
 
 AUTH_PASSWORD_VALIDATORS = [
