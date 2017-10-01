@@ -139,6 +139,7 @@ def dashboard_stats(request):
         userMode = request.GET.get("userMode").lower()
         currencyType = request.GET.get("currencyType").lower()
         userName = request.GET.get("userName")
+        print("username="+userName+" currencyType="+currencyType+"userMode="+userMode)
         currentAgent = Agent.objects.filter(user__username=userName)
         print(currentAgent)
         currentUser = currentAgent[0].user
