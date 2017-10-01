@@ -79,14 +79,17 @@ WSGI_APPLICATION = 'qchain_backend.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'qchain_backend',
-        'USER': 'qchain_admin',
-        'PASSWORD': 'jda=3GR$NsA6m2K5',
-        'HOST': 'localhost',
-        'PORT': '',
-        }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'qchain_backend',
+    #     'USER': 'qchain_admin',
+    #     'PASSWORD': 'jda=3GR$NsA6m2K5',
+    #     'HOST': 'localhost',
+    #     'PORT': '',
+    #     }
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL')
+    )
 }
 
 AUTH_PASSWORD_VALIDATORS = [
