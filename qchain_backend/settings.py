@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'qchain_backend',
     'corsheaders',
+    'account',
 ]
 
 MIDDLEWARE = [
