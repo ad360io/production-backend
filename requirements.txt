@@ -16,3 +16,4 @@ python-slugify==1.1.4
 pytz==2017.2
 six==1.10.0
 Unidecode==0.4.21
+django-user-accounts==1.3.1
