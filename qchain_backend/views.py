@@ -207,11 +207,12 @@ def dashboard_stats(request):
     return response.Response({"j":"jetti"})
 
 
-@api_view(["GET","POST"])
+@api_view(["POST"])
 def login3210(request):
     username = request.data.get("username")
     password = request.data.get("password")
-
+    print(username)
+    print(password)
     user = authenticate(username=username, password=password)
     if not user:
         return response.Response({"error": "Login failed"})
