@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'qchain_backend',
     'corsheaders',
-    'account',
+    # 'account',
 ]
 
 MIDDLEWARE = [
@@ -161,17 +161,17 @@ STATICFILES_DIRS = [
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-
-ACCOUNT_OPEN_SIGNUP = True
-ACCOUNT_EMAIL_UNIQUE = True
-ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = False
-ACCOUNT_LOGIN_REDIRECT_URL = "home"
-ACCOUNT_LOGOUT_REDIRECT_URL = "home"
-ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 2
-ACCOUNT_USE_AUTH_AUTHENTICATE = True
-
-
-AUTHENTICATION_BACKENDS = [
-    "account.auth_backends.UsernameAuthenticationBackend",
-]
+# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+#
+# ACCOUNT_OPEN_SIGNUP = True
+# ACCOUNT_EMAIL_UNIQUE = True
+# ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = False
+# ACCOUNT_LOGIN_REDIRECT_URL = "home"
+# ACCOUNT_LOGOUT_REDIRECT_URL = "home"
+# ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 2
+# ACCOUNT_USE_AUTH_AUTHENTICATE = True
+#
+#
+# AUTHENTICATION_BACKENDS = [
+#     "account.auth_backends.UsernameAuthenticationBackend",
+# ]
