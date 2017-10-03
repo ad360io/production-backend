@@ -14,7 +14,7 @@ GENRE_CHOICES = (('Gaming', 'Gaming'), ('Movies', 'Movies'),
 MAX_DIGITS = 12
 DECIMAL_PLACES = 8
 NAME_LENGTH = 80
-SHORT_TXT_LENGTH = 140
+SHORT_TXT_LENGTH = 300
 CHOICE_LENGTH = 15
 URL_LENGTH = 200
 
@@ -155,6 +155,16 @@ class RequestForAdv(models.Model):
                                                                    DECIMAL_PLACES)])
     ask_date_from = models.DateField()
     ask_date_to = models.DateField()
+    cpi = models.DecimalField(default=0,max_digits=MAX_DIGITS,
+                                      decimal_places=DECIMAL_PLACES,
+                                      validators=[MinValueValidator(0),
+                                                  DecimalValidator(MAX_DIGITS,
+                                                                   DECIMAL_PLACES)])
+    cpc =  models.DecimalField(default=0,max_digits=MAX_DIGITS,
+                                      decimal_places=DECIMAL_PLACES,
+                                      validators=[MinValueValidator(0),
+                                                  DecimalValidator(MAX_DIGITS,
+                                                                   DECIMAL_PLACES)])
     msg = models.CharField(max_length=SHORT_TXT_LENGTH)
 
     def __str__(self):
@@ -179,6 +189,16 @@ class AdListing(models.Model):
                                                                    DECIMAL_PLACES)])
     ask_date_from = models.DateField()
     ask_date_to = models.DateField()
+    cpi = models.DecimalField(default=0,max_digits=MAX_DIGITS,
+                                      decimal_places=DECIMAL_PLACES,
+                                      validators=[MinValueValidator(0),
+                                                  DecimalValidator(MAX_DIGITS,
+                                                                   DECIMAL_PLACES)])
+    cpc =  models.DecimalField(default=0,max_digits=MAX_DIGITS,
+                                      decimal_places=DECIMAL_PLACES,
+                                      validators=[MinValueValidator(0),
+                                                  DecimalValidator(MAX_DIGITS,
+                                                                   DECIMAL_PLACES)])
     msg = models.CharField(max_length=SHORT_TXT_LENGTH)
     def __str__(self):
         return self.name
