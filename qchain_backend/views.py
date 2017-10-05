@@ -49,7 +49,7 @@ def dashboard_tables(request):
 
             context['t2_col1'] = [str(a_cont.ad.advertiser) for a_cont in my_cont_list]
             context['t2_col2'] = [a_cont.start_time.date() for a_cont in my_cont_list]
-            context['t1_col1'] = [an_adsp.website.name for an_adsp in my_adsp_list]
+            context['t1_col1'] = [an_adsp.website.link for an_adsp in my_adsp_list]
             context['t1_col2'] = [an_adsp.adtype for an_adsp in my_adsp_list]
             context['t1_col3'] = [an_adsp.genre for an_adsp in my_adsp_list]
             print(context)
