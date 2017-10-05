@@ -60,7 +60,7 @@ def dashboard_tables(request):
             my_ad_list = Ad.objects.filter(advertiser=currentUser)
             context['t2_col1'] = [str(a_cont.adspace.publisher) for a_cont in my_cont_list]
             context['t2_col2'] = [a_cont.start_time.date() for a_cont in my_cont_list]
-            context['t1_col1'] = [ad.content for ad in my_ad_list]
+            context['t1_col1'] = [a_cont.adspace.website for a_cont in my_cont_list]
             context['t1_col2'] = [an_ad.adtype for an_ad in my_ad_list]
             context['t1_col3'] = [an_ad.genre for an_ad in my_ad_list]
             print(context)
