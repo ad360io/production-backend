@@ -31,7 +31,7 @@ curList = ["eqc","xqc"]
 # User Creation
 usersList =[]
 for i in range(1,10):
-    user = User.objects.create_user('demoUser'+i, password='demopassword'+i)
+    user = User.objects.create_user(username='demoUser'+i, password='demopassword'+i)
     user.is_superuser=False
     user.is_staff=False
     user.save()
@@ -77,15 +77,9 @@ adsList = Ad.objects.all()
 curList = ["eqc","xqc"]
 
 # Create contracts
-for ind1 in range(10):
-    temp_ad = random.choice(adsList)
-    temp_adspace = random.choice(adSpaceList)
-    #end_month_value = random.randint(7,10)
-    #start = random.randint(5)
-    #end = start+random.randint()
-    # pick a random date in the last week of june (doesn't have to be june)
-    #junedate = 23 + np.random.randint(7)
-    #finaldate = junedate + np.randomint
+temp_ad_list = random.sample(adsList,10)
+temp_adspace_list = random.sample(adSpaceList,10)
+for ind1 in range(0,9):
     start_month = random.randint(7,10)
     end_month = start_month + random.randint(1,2)
     start_date = random.randint(1,20)
@@ -93,7 +87,7 @@ for ind1 in range(10):
     cont = Contract(ad=temp_ad, # assign the randomly selected ad
                     adspace=temp_adspace,
                     name="Cont. btwn. "+str(temp_ad.name)+" on "+str(temp_adspace.name),
-                    # all contracts start on junedata of June (06) 2017 at 05:05:05.
+                    # all contracts sart on junedata of June (06) 2017 at 05:05:05.
                     # as a simple task, modify the code so that the start and end dates
                     # are completely randomized (5 marks)
                     start_time=datetime(2017,start_month,start_date,5,5,5,5),
