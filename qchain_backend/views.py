@@ -214,6 +214,7 @@ def login3210(request):
     print(username)
     print(password)
     user = authenticate(username=username, password=password)
+    print(user)
     if not user:
         return response.Response({"error": "Login failed"})
 
