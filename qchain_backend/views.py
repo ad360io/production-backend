@@ -310,7 +310,7 @@ def dashboard_charts(request):
             context['c2_y_day30revenue'] = {"data":[0]*len(my_cont_list)}
             context['c2_y_alltimerevenue'] = {"data":[0]*len(my_cont_list)}
             for ind in range(len(my_cont_list)):
-                xdata.append(my_cont_list[ind].name)
+                xdata.append(my_cont_list[ind].adspace.name)
                 related_stat_list = my_stat_list.filter(contract=my_cont_list[ind])
                 week_list = related_stat_list.filter(stat_date__gte=datetime.date.today()+datetime.timedelta(-7))
                 day30_list = related_stat_list.filter(stat_date__gte=datetime.date.today()+datetime.timedelta(-30))
@@ -379,7 +379,7 @@ def dashboard_charts(request):
             context['c2_y_day30clicks'] = {"data":[0]*len(my_cont_list)}
             context['c2_y_alltimeclicks'] = {"data":[0]*len(my_cont_list)}
             for ind in range(len(my_cont_list)):
-                xdata.append(my_cont_list[ind].name)
+                xdata.append(my_cont_list[ind].ad.name)
                 related_stat_list = my_stat_list.filter(contract=my_cont_list[ind])
                 week_list = related_stat_list.filter(stat_date__gte=datetime.date.today()+datetime.timedelta(-7))
                 day30_list = related_stat_list.filter(stat_date__gte=datetime.date.today()+datetime.timedelta(-30))
