@@ -58,7 +58,7 @@ def dashboard_tables(request):
             my_cont_list = Contract.objects.filter(ad__advertiser=currentUser,
                                                    currency=currencyType)
             my_ad_list = Ad.objects.filter(advertiser=currentUser)
-            context['t2_col1'] = [str(a_cont.adspace.publisher) for a_cont in my_cont_list]
+            context['t2_col1'] = [str(a_cont.adspace.publisher.username) for a_cont in my_cont_list]
             context['t2_col2'] = [a_cont.start_time.date() for a_cont in my_cont_list]
             context['t1_col1'] = [a_cont.adspace.website for a_cont in my_cont_list]
             context['t1_col2'] = [an_ad.adtype for an_ad in my_ad_list]
@@ -79,10 +79,12 @@ def display_marketplace(request):
     currencyType = request.GET.get("currencyType").lower()
     adTypeList = request.GET.get("adType")
     adGenreList = request.GET.get("adGenre")
-    print(type(adTypeList))
-    print(type(request.GET.getlist("adGenre")))
-    minrate = int(request.GET.get("minrate"))
-    maxrate = int(request.GET.get("maxrate"))
+    userName = request.GET.get("userName")
+    cpi_minrate = int(request.GET.get("cpi_minrate"))
+    cpi_maxrate = int(request.GET.get("cpi_maxrate"))
+    cpm_minrate = int(request.GET.get("cpm_minrate"))
+    cpm_maxrate = int(request.GET.get("cpm_maxrate"))
+
     print("Length of adreq list is L ",len(my_adreq_list))
     if currencyType != "" :
         my_adreq_list = my_adreq_list.filter(currency__iexact=
@@ -320,6 +322,7 @@ def dashboard_charts(request):
                 context['c2_y_alltimerevenue']["data"][ind] = sum([a_stat.revenue for a_stat in alltime_list])
                 # In the front end, sum up the correct list, round to 0 places and display.
             context['c2_xdata'] = xdata
+
             print("------------------------------------------------------------------")
             return response.Response(context)
 

@@ -14,7 +14,7 @@ GENRE_CHOICES = (('Gaming', 'Gaming'), ('Movies', 'Movies'),
 MAX_DIGITS = 12
 DECIMAL_PLACES = 8
 NAME_LENGTH = 80
-SHORT_TXT_LENGTH = 300
+SHORT_TXT_LENGTH = 600
 CHOICE_LENGTH = 15
 URL_LENGTH = 200
 
@@ -140,6 +140,7 @@ class Stat(models.Model):
     def __str__(self):
         return "Stats for date"+str(self.stat_date)
 
+
 class RequestForAdv(models.Model):
     """
     Class for request for an advertisement from a publisher.
@@ -148,11 +149,6 @@ class RequestForAdv(models.Model):
     name = models.CharField(max_length=NAME_LENGTH)
     currency = models.CharField(max_length=4,
                                 choices=(("eqc", "EQC"), ("xqc", "XQC")))
-    asking_rate = models.DecimalField(max_digits=MAX_DIGITS,
-                                      decimal_places=DECIMAL_PLACES,
-                                      validators=[MinValueValidator(0),
-                                                  DecimalValidator(MAX_DIGITS,
-                                                                   DECIMAL_PLACES)])
     ask_date_from = models.DateField()
     ask_date_to = models.DateField()
     cpi = models.DecimalField(default=0,max_digits=MAX_DIGITS,
@@ -160,7 +156,7 @@ class RequestForAdv(models.Model):
                                       validators=[MinValueValidator(0),
                                                   DecimalValidator(MAX_DIGITS,
                                                                    DECIMAL_PLACES)])
-    cpc =  models.DecimalField(default=0,max_digits=MAX_DIGITS,
+    cpm =  models.DecimalField(default=0,max_digits=MAX_DIGITS,
                                       decimal_places=DECIMAL_PLACES,
                                       validators=[MinValueValidator(0),
                                                   DecimalValidator(MAX_DIGITS,
@@ -182,11 +178,7 @@ class AdListing(models.Model):
     name = models.CharField(max_length=NAME_LENGTH)
     currency = models.CharField(max_length=4,
                                 choices=(("eqc", "EQC"), ("xqc", "XQC")))
-    asking_rate = models.DecimalField(max_digits=MAX_DIGITS,
-                                      decimal_places=DECIMAL_PLACES,
-                                      validators=[MinValueValidator(0),
-                                                  DecimalValidator(MAX_DIGITS,
-                                                                   DECIMAL_PLACES)])
+
     ask_date_from = models.DateField()
     ask_date_to = models.DateField()
     cpi = models.DecimalField(default=0,max_digits=MAX_DIGITS,
@@ -194,7 +186,7 @@ class AdListing(models.Model):
                                       validators=[MinValueValidator(0),
                                                   DecimalValidator(MAX_DIGITS,
                                                                    DECIMAL_PLACES)])
-    cpc =  models.DecimalField(default=0,max_digits=MAX_DIGITS,
+    cpm =  models.DecimalField(default=0,max_digits=MAX_DIGITS,
                                       decimal_places=DECIMAL_PLACES,
                                       validators=[MinValueValidator(0),
                                                   DecimalValidator(MAX_DIGITS,
