@@ -92,7 +92,7 @@ DATABASES = {
     #     'ENGINE': 'django.db.backends.postgresql',
     #     'NAME': 'qchain_backend',
     #     'USER': 'qchain_admin',
-    #     'PASSWORD': 'jda=3GR$NsA6m2K5',
+    #     'PASSWORD': 'VARSHAS93',
     #     'HOST': 'localhost',
     #     'PORT': '',
     #     }
