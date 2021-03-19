@@ -6,7 +6,7 @@ whitenoise==3.2
 django-appconf==1.0.2
 django-cors-headers==2.1.0
 django-extensions==1.8.1
-djangorestframework==3.6.3
+djangorestframework==3.11.2
 djangorestframework-jwt==1.11.0
 jsonfield==2.0.2
 MarkupSafe==1.0
