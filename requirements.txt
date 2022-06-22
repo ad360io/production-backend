@@ -10,7 +10,7 @@ djangorestframework==3.6.3
 djangorestframework-jwt==1.11.0
 jsonfield==2.0.2
 MarkupSafe==1.0
-numpy==1.13.1
+numpy==1.22.0
 PyJWT==1.5.2
 python-slugify==1.1.4
 pytz==2017.2
